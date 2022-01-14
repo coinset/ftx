@@ -46,22 +46,24 @@ const baseFutureEquality = {
   underlying: anyString(),
 };
 
+export const dataEquality = anyOf([
+  baseSpotEquality,
+  {
+    ...baseSpotEquality,
+    tokenizedEquity: anyBoolean(),
+  },
+  baseFutureEquality,
+  {
+    ...baseFutureEquality,
+    tokenizedEquity: anyBoolean(),
+  },
+]);
+
 test("fetchMarkets", async () => {
   await expect(fetchMarkets()).resolves.toEqual({
     success: true,
     result: anyArray(
-      anyOf([
-        baseSpotEquality,
-        {
-          ...baseSpotEquality,
-          tokenizedEquity: anyBoolean(),
-        },
-        baseFutureEquality,
-        {
-          ...baseFutureEquality,
-          tokenizedEquity: anyBoolean(),
-        },
-      ]),
+      dataEquality,
     ),
   });
 });
