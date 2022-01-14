@@ -30,7 +30,7 @@ export type OrderBookOptions = {
 export function fetchOrderBook(
   marketName: string,
   { depth }: OrderBookOptions = {},
-): Promise<OrderBookOptions> {
+): Promise<OrderBookResponse> {
   const url = new URL(`markets/${marketName}/orderbook`, BASE_URL);
 
   if (isNumber(depth)) {
