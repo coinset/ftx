@@ -197,3 +197,47 @@ type TradesResponse = {
   }[];
 };
 ```
+
+### fetchCandles
+
+Historical prices of expired futures can be retrieved with this end point but
+make sure to specify start time and end time.
+[Docs](https://docs.ftx.com/?javascript#get-historical-prices)
+
+example:
+
+```ts
+import { fetchCandles } from "https://deno.land/x/ftx@$VERSION/mod.ts";
+await fetchCandles({ marketName: "BTC/USD", resolution: 300 });
+```
+
+parameter:
+
+| name       | type                                       | required | description          |
+| ---------- | ------------------------------------------ | -------- | -------------------- |
+| candleArgs | `FetchCandles`                             | *        | required candle args |
+| options    | `{ startTime?: number, endTime?: number }` |          | candle options       |
+
+```ts
+type FetchCandles = {
+  marketName: string;
+  resolution: (15 | 60 | 300 | 900 | 3600 | 14400 | 86400) | ({} & number);
+};
+```
+
+returns:
+
+```ts
+type CandlesResponse = {
+  success: true;
+  result: {
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    startTime: Date;
+    volume: number;
+    time: number;
+  }[];
+};
+```
