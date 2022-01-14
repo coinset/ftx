@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/coinset/ftx/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-14)
+
+
+### Features
+
+* **public:** add public api of `fetchCandles` function ([1e97665](https://github.com/coinset/ftx/commit/1e9766578da889330bdc1b69176c6c1dbec48c0a))
+
 # 1.0.0-beta.1 (2022-01-14)
 
 
