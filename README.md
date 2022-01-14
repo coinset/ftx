@@ -25,9 +25,9 @@ await fetchMarket("BTC/USD");
 
 parameter:
 
-| name       | type     | description                                         |
-| ---------- | -------- | --------------------------------------------------- |
-| marketName | `string` | e.g. `"BTC/USD"` for spot, `"BTC-PERP"` for futures |
+| name       | type     | required | description                                         |
+| ---------- | -------- | -------- | --------------------------------------------------- |
+| marketName | `string` | *        | e.g. `"BTC/USD"` for spot, `"BTC-PERP"` for futures |
 
 returns:
 
@@ -129,5 +129,36 @@ type MarketsResponse = {
       type: "future";
     })
   )[];
+};
+```
+
+### fetchOrderBook
+
+Retrieve order book of market name.
+[Docs](https://docs.ftx.com/?javascript#get-orderbook)
+
+example:
+
+```ts
+import { fetchOrderBook } from "https://deno.land/x/ftx@$VERSION/mod.ts";
+await fetchOrderBook("BTC/USD");
+```
+
+parameter:
+
+| name       | type                 | required | description                                         |
+| ---------- | -------------------- | -------- | --------------------------------------------------- |
+| marketName | `string`             | *        | e.g. `"BTC/USD"` for spot, `"BTC-PERP"` for futures |
+| options    | `{ depth?: number }` |          | order book options                                  |
+
+returns:
+
+```ts
+type OrderBookResponse = {
+  success: true;
+  result: {
+    asks: [number, number][];
+    bids: [number, number][];
+  };
 };
 ```
