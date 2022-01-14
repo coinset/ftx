@@ -162,3 +162,38 @@ type OrderBookResponse = {
   };
 };
 ```
+
+### fetchTrades
+
+Retrieve list of trade history.
+[Docs](https://docs.ftx.com/?javascript#get-trades)
+
+example:
+
+```ts
+import { fetchTrades } from "https://deno.land/x/ftx@$VERSION/mod.ts";
+await fetchTrades("BTC/USD");
+```
+
+parameter:
+
+| name       | type                                       | required | description                                         |
+| ---------- | ------------------------------------------ | -------- | --------------------------------------------------- |
+| marketName | `string`                                   | *        | e.g. `"BTC/USD"` for spot, `"BTC-PERP"` for futures |
+| options    | `{ startTime?: number, endTime?: number }` |          | trades options                                      |
+
+returns:
+
+```ts
+type TradesResponse = {
+  success: true;
+  result: {
+    id: number;
+    liquidation: boolean;
+    price: number;
+    side: "buy" | "sell";
+    size: number;
+    time: Date;
+  }[];
+};
+```
